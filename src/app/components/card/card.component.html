@@ -1,0 +1,19 @@
+<div class="row">
+  <div
+    *ngFor="let product of products"
+    class="d-flex col-md-4 col-sm-6 mb-2 align-items-stretch"
+  >
+    <mat-card id="mat-card">
+      <img mat-card-image [src]="product.img" />
+      <mat-card-title> {{ product.name }} </mat-card-title>
+      <mat-card-content>
+        {{ product.description | description }}
+      </mat-card-content>
+      <hr />
+      <p>{{ product.price }}</p>
+      <mat-card-actions class="align-self-end">
+        <button mat-stroked-button color="primary">comprar</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
