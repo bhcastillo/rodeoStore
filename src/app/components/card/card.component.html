@@ -10,7 +10,7 @@
         {{ product.description | description }}
       </mat-card-content>
       <hr />
-      <p>{{ product.price }}</p>
+      <p>{{ product.price | currency: "COP":"symbol":"4.0-2" }}</p>
       <mat-card-actions class="align-self-end">
         <button mat-stroked-button color="primary">comprar</button>
       </mat-card-actions>
