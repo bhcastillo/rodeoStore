@@ -68,8 +68,8 @@ export class CartService {
       .subscribe((product) => this.saveProductInCart(product, quantity));
   }
   saveProductInCart(product: IProduct, quantity?: number) {
-    product.quantity = Number(product.quantity)
-    quantity = Number(quantity)
+    product.quantity = Number(product.quantity);
+    quantity = Number(quantity);
     // If the cart is empty
     if (this.cartDataServer.data[0].product === undefined) {
       this.cartDataServer.data[0].product = product;
@@ -84,10 +84,7 @@ export class CartService {
     }
     // Cart is not empty
     else {
-      let index = this.cartDataServer.data.findIndex(
-        (p) => p.product.id === product.id
-      );
-
+      let index = this.cartDataServer.data.findIndex((p) => p.product.id === product.id);
       //1. If chosen product is already in cart array
       if (index !== -1) {
       if (quantity <= product.quantity){
@@ -102,14 +99,8 @@ export class CartService {
       }
       // 2. If chosen product is not in cart array
       else {
-        this.cartDataServer.data.push({
-          product,
-          quantityInCart:  1,
-        });
-        this.cartDataClient.prodData.push({
-          id: product.id,
-          quantityInCart:  1,
-        });
+        this.cartDataServer.data.push({product,quantityInCart:  1,});
+        this.cartDataClient.prodData.push({id: product.id,quantityInCart:  1,});
       }
       this.calculateTotal();
       this.cartDataClient.total = this.cartDataServer.total;

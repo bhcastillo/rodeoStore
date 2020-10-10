@@ -1,1 +1,39 @@
-<p class="top-header">header works!</p>
+<header class="header">
+  <div class="row">
+    <!-- LOGO -->
+    <div class="col-sm-12 col-md-3">
+      <div class="header-logo">
+        <a routerLink="/" class="logo">
+          <img src="../../../assets/img/logo.png" alt="" class="ml-3" />
+        </a>
+      </div>
+    </div>
+    <!-- /LOGO -->
+    <!-- SEARCH -->
+    <div class="col-sm-12 col-md-6">
+      <form class="form-inline">
+        <input
+          class="form-control mr-sm-2 mb-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          Search
+        </button>
+      </form>
+    </div>
+    <!-- /SEARCH -->
+    <!-- CART -->
+    <div class="col-sm-12 col-md-3">
+      <div class="cart-dropdown">
+        <i class="fa fa-shopping-cart fa-2x"></i>
+        <span>Your Cart</span>
+        <div class="qty">
+          {{ cartData.data[0].quantityInCart !== 0 ? cartData.data.length : 0 }}
+        </div>
+      </div>
+    </div>
+    <!-- /CART -->
+  </div>
+</header>
