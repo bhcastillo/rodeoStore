@@ -6,6 +6,7 @@ export interface IProduct {
   bestSeller:boolean;
   price:number;
   img:string;
-  description:string
+  description:string;
+  quantity?:number;
 
 }

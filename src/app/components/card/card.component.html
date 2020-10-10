@@ -4,7 +4,12 @@
     class="d-flex col-md-4 col-sm-6 mb-2 align-items-stretch"
   >
     <mat-card id="mat-card">
-      <img mat-card-image [src]="product.img" />
+      <img
+        mat-card-image
+        [src]="product.img"
+        (click)="selectProduct(product.id)"
+        style="cursor: pointer"
+      />
       <mat-card-title> {{ product.name }} </mat-card-title>
       <mat-card-content>
         {{ product.description | description }}

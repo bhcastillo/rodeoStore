@@ -1,6 +1,8 @@
 //Modules
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { ComponentsModule } from '../components/components.module';
 //Services
 import { ProductsService } from '../services/products.service';
@@ -15,6 +17,7 @@ import { ProductComponent } from './product/product.component';
   ],
   imports: [
     CommonModule,
+    BrowserModule,
     ComponentsModule
   ],
   exports:[

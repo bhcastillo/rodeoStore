@@ -1,15 +1,62 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IProduct } from 'src/app/interfaces/product';
+import { CartService } from 'src/app/services/cart.service';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit {
-
-  constructor() { }
+  public product: IProduct;
+  @ViewChild('quantity') quantityInput;
+  constructor(
+    private activateRoute: ActivatedRoute,
+    private router: Router,
+    private productsService: ProductsService,
+    private cartService:CartService
+  ) {}
 
   ngOnInit(): void {
+    const { id } = this.activateRoute.snapshot.params;
+    this.productsService.getProduct(id).subscribe(
+      (product) => (this.product = product),
+      (err) =>
+      this.router.navigateByUrl('/')
+    );
   }
+  addToCart(id: Number) {
+    this.cartService.AddProductToCart(id, this.quantityInput.nativeElement.value);
+  }
+  Increase() {
+    let value = parseInt(this.quantityInput.nativeElement.value);
+    if (this.product.quantity >= 1){
+      value++;
 
+      if (value > this.product.quantity) {
+        // @ts-ignore
+        value = this.product.quantity;
+      }
+    } else {
+      return;
+    }
+
+    this.quantityInput.nativeElement.value = value.toString();
+  }
+  Decrease() {
+    let value = parseInt(this.quantityInput.nativeElement.value);
+    if (this.product.quantity > 0){
+      value--;
+
+      if (value <= 0) {
+        // @ts-ignore
+        value = 0;
+      }
+    } else {
+      return;
+    }
+    this.quantityInput.nativeElement.value = value.toString();
+  }
 }
