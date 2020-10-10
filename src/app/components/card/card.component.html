@@ -17,7 +17,12 @@
       <hr />
       <p>{{ product.price | currency: "COP":"symbol":"4.0-2" }}</p>
       <mat-card-actions class="align-self-end">
-        <button mat-stroked-button color="primary">comprar</button>
+        <button
+          mat-stroked-button
+          [color]="product.quantity < 1 ? 'warn' : 'primary'"
+        >
+          {{ product.quantity < 1 ? "Agotado" : "Comprar" }}
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>
