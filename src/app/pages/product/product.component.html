@@ -29,11 +29,14 @@
             </div>
             <button
               (click)="addToCart(product?.id)"
-              *ngIf="product?.quantity >= 1"
+              [disabled]="product?.quantity < 1"
               mat-stroked-button
               [color]="product.quantity < 1 ? 'warn' : 'primary'"
             >
-              <i class="fa fa-shopping-cart"></i>Añadir al carrito
+              <i class="fa fa-shopping-cart"></i>
+              {{
+                product.quantity < 1 ? "Producto Agotado" : " Añadir al carrito"
+              }}
             </button>
           </div>
         </div>
