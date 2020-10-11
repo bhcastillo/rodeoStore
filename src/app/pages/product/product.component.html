@@ -30,7 +30,8 @@
             <button
               (click)="addToCart(product?.id)"
               *ngIf="product?.quantity >= 1"
-              class="add-to-cart-btn"
+              mat-stroked-button
+              [color]="product.quantity < 1 ? 'warn' : 'primary'"
             >
               <i class="fa fa-shopping-cart"></i>Añadir al carrito
             </button>

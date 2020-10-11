@@ -15,18 +15,21 @@ export class CartService {
     prodData: [{ quantityInCart: 0, id: 0 }],
     total: 0,
   };
-  private cartDataServer: IcartDataServer = {
+  public cartDataServer: IcartDataServer = {
     data: [
       {
-        product: undefined,
         quantityInCart: 0,
+        product: undefined,
       },
     ],
     total: 0,
   };
   cartDataObs$ = new BehaviorSubject<IcartDataServer>(this.cartDataServer);
-
+  cartTotal$ = new BehaviorSubject<number>(0);
   constructor(private productsService: ProductsService) {
+    this.cartTotal$.next(this.cartDataServer.total);
+    this.cartDataObs$.next(this.cartDataServer);
+
     let info: ICardDataClient = JSON.parse(localStorage.getItem('cart'));
     console.log(info);
     if (
@@ -37,6 +40,7 @@ export class CartService {
       // assign the value to our data variable which corresponds to the LocalStorage data format
       this.cartDataClient = info;
       // Loop through each entry and put it in the cartDataServer object
+     
       this.cartDataClient.prodData.forEach((p) => {
         this.productsService
           .getProduct(p.id)
@@ -67,6 +71,7 @@ export class CartService {
       .getProduct(id)
       .subscribe((product) => this.saveProductInCart(product, quantity));
   }
+  
   saveProductInCart(product: IProduct, quantity?: number) {
     product.quantity = Number(product.quantity);
     quantity = Number(quantity);
@@ -108,6 +113,74 @@ export class CartService {
       this.cartDataObs$.next({ ...this.cartDataServer });
     }
   }
+  UpdateCartData(index, increase: Boolean) {
+    let data = this.cartDataServer.data[index];
+    if (increase) {
+      
+      data.quantityInCart < data.product.quantity ? data.quantityInCart++ : data.product.quantity;
+      this.cartDataClient.prodData[index].quantityInCart = data.quantityInCart;
+      this.calculateTotal();
+      this.cartDataClient.total = this.cartDataServer.total;
+      this.cartDataObs$.next({...this.cartDataServer});
+      localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
+    } else {
+      
+      data.quantityInCart--;
+      
+      if (data.quantityInCart < 1) {
+        this.DeleteProductFromCart(index);
+        this.cartDataObs$.next({...this.cartDataServer});
+      } else {
+        
+        this.cartDataObs$.next({...this.cartDataServer});
+        this.cartDataClient.prodData[index].quantityInCart = data.quantityInCart;
+        this.calculateTotal();
+        this.cartDataClient.total = this.cartDataServer.total;
+        localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
+      }
+    }
+  }
+  DeleteProductFromCart(index) {
+    if (window.confirm('Seguro que quieres eliminar el producto?')) {
+      this.cartDataServer.data.splice(index, 1);
+      this.cartDataClient.prodData.splice(index, 1);
+      this.calculateTotal();
+      this.cartDataClient.total = this.cartDataServer.total;
+
+      if (this.cartDataClient.total === 0) {
+        this.cartDataClient = {prodData: [{quantityInCart: 0, id: 0}], total: 0};
+        localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
+      } else {
+        localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
+      }
+
+      if (this.cartDataServer.total === 0) {
+        this.cartDataServer = {
+          data: [{
+            product: undefined,
+            quantityInCart: 0
+          }],
+          total: 0
+        };
+        this.cartDataObs$.next({...this.cartDataServer});
+      } else {
+        this.cartDataObs$.next({...this.cartDataServer});
+      }
+    }
+    // If the user doesn't want to delete the product, hits the CANCEL button
+    else {
+      return;
+    }
+  }
+  CalculateSubTotal(index): Number {
+    let subTotal = 0;
+
+    let product = this.cartDataServer.data[index];
+    // @ts-ignore
+    subTotal = product.product.price * product.quantityInCart;
+    
+    return subTotal;
+  }
   calculateTotal() {
     let total = 0;
     this.cartDataServer.data.forEach((products) => {
@@ -116,5 +189,6 @@ export class CartService {
       total += price * quantityInCart;
     });
     this.cartDataServer.total = total;
+    this.cartTotal$.next(this.cartDataServer.total);
   }
 }

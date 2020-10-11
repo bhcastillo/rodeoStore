@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
 //Components
+import { MaterialModule } from './material.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -15,6 +16,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MaterialModule,
     HttpClientModule,
     PagesModule,
     SharedModule

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IcartDataServer } from 'src/app/interfaces/cartData';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -18,5 +19,5 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.cartDataObs$.subscribe(data=> this.cartData = data);
   }
-
+ 
 }
