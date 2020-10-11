@@ -5,10 +5,11 @@ import { MaterialModule } from '../material.module';
 import { PipesModule } from '../pipes/pipes.module';
 //Components
 import { CardComponent } from './card/card.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [    
-    CardComponent,
+    CardComponent, SearchComponent,
 ],
   imports: [
     CommonModule,
@@ -16,7 +17,7 @@ import { CardComponent } from './card/card.component';
     PipesModule
   ],
   exports:[
-    CardComponent,
+    CardComponent, SearchComponent
   ]
 })
 export class ComponentsModule { }

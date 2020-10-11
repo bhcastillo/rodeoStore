@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { MaterialModule } from '../material.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
+import { ComponentsModule } from '../components/components.module';
 
 
 
@@ -19,8 +20,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     MaterialModule, 
     AppRoutingModule,
+    ComponentsModule,
     RouterModule,
-    
   ],
   exports:[ 
     HeaderComponent,

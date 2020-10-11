@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { IcartDataServer } from 'src/app/interfaces/cartData';
+//Services
 import { CartService } from 'src/app/services/cart.service';
+import { ProductsService } from 'src/app/services/products.service';
+//InterFaces
+import { IcartDataServer } from 'src/app/interfaces/cartData';
+import { IProduct } from 'src/app/interfaces/product';
+import { IProductAndCategory } from 'src/app/interfaces/productAndCategory';
 
 @Component({
   selector: 'app-header',
@@ -9,20 +13,22 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  
-  cartData:IcartDataServer;
 
-  constructor(private cartService:CartService) {
+  cartData: IcartDataServer;
+  productsData: IProductAndCategory;
+  constructor(private cartService: CartService, public productsService: ProductsService) {
 
-   }
+  }
 
   ngOnInit(): void {
-    this.cartService.cartDataObs$.subscribe(data=> this.cartData = data);
+    this.cartService.cartDataObs$.subscribe(
+      (data) => this.cartData = data,
+      (err) => console.log(err));
+    this.productsService.getAll().subscribe(
+      (data) => this.productsData = data,
+      (err) => console.log(err)
+    )
   }
-  SearchProduct(textSearch:string){
-    textSearch = textSearch.trim()
-    if (textSearch.length ===0)return;
-    
-  }
- 
+
+
 }

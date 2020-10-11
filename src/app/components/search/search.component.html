@@ -1,0 +1,18 @@
+<div class="form-inline">
+  <mat-form-field class="example-full-width">
+    <mat-label>Producto</mat-label>
+    <input
+      matInput
+      value=""
+      #txtSearch
+      (keyup)="SearchProduct(txtSearch.value)"
+    />
+  </mat-form-field>
+  <button
+    mat-stroked-button
+    color="primary"
+    (click)="SearchProduct(txtSearch.value)"
+  >
+    Buscar
+  </button>
+</div>
