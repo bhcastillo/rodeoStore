@@ -8,7 +8,6 @@
         mat-card-image
         [src]="product.img"
         (click)="selectProduct(product.id)"
-        style="cursor: pointer"
       />
       <mat-card-title> {{ product.name }} </mat-card-title>
       <mat-card-content>
@@ -20,6 +19,7 @@
         <button
           mat-stroked-button
           [color]="product.quantity < 1 ? 'warn' : 'primary'"
+          (click)="AddProduct(product.id)"
         >
           {{ product.quantity < 1 ? "Agotado" : "Comprar" }}
         </button>

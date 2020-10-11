@@ -19,5 +19,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.cartDataObs$.subscribe(data=> this.cartData = data);
   }
+  SearchProduct(textSearch:string){
+    textSearch = textSearch.trim()
+    if (textSearch.length ===0)return;
+    
+  }
  
 }

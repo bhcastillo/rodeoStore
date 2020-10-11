@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-
 //Services
 import { ProductsService } from './products.service';
 //Interfaces
 import { ICardDataClient, IcartDataServer } from '../interfaces/cartData';
 import { IProduct } from '../interfaces/product';
+import { AlertMessageService } from './alert-message.service';
 
 @Injectable({
   providedIn: 'root',
@@ -26,12 +26,11 @@ export class CartService {
   };
   cartDataObs$ = new BehaviorSubject<IcartDataServer>(this.cartDataServer);
   cartTotal$ = new BehaviorSubject<number>(0);
-  constructor(private productsService: ProductsService) {
+  constructor(private productsService: ProductsService,private alertMessageService: AlertMessageService) {
     this.cartTotal$.next(this.cartDataServer.total);
     this.cartDataObs$.next(this.cartDataServer);
 
     let info: ICardDataClient = JSON.parse(localStorage.getItem('cart'));
-    console.log(info);
     if (
       info !== null &&
       info !== undefined &&
@@ -86,6 +85,7 @@ export class CartService {
       this.cartDataClient.total = this.cartDataServer.total;
       localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
       this.cartDataObs$.next({ ...this.cartDataServer });
+      this.alertMessageService.showAlertAddProduct(product);  
     }
     // Cart is not empty
     else {
@@ -101,11 +101,14 @@ export class CartService {
           this.cartDataServer.data[index].quantityInCart < product.quantity ? this.cartDataServer.data[index].quantityInCart++: product.quantity;
         }
         this.cartDataClient.prodData[index].quantityInCart = this.cartDataServer.data[index].quantityInCart;
+        this.alertMessageService.showAlertUpdateProduct(product);
       }
       // 2. If chosen product is not in cart array
       else {
         this.cartDataServer.data.push({product,quantityInCart:  1,});
         this.cartDataClient.prodData.push({id: product.id,quantityInCart:  1,});
+        this.alertMessageService.showAlertAddProduct(product);
+
       }
       this.calculateTotal();
       this.cartDataClient.total = this.cartDataServer.total;

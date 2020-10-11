@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/services/cart.service';
 import { IProduct } from '../../interfaces/product';
 
 @Component({
@@ -10,12 +11,14 @@ import { IProduct } from '../../interfaces/product';
 export class CardComponent implements OnInit {
   @Input() products: IProduct[];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private cartService:CartService) {}
 
   ngOnInit(): void {
-    console.log(this.products);
   }
   selectProduct(id: Number) {
     this.router.navigate(['/product', id]).then();
+  }
+  AddProduct(id: Number) {
+    this.cartService.AddProductToCart(id);
   }
 }

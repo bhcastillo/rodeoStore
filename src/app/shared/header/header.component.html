@@ -1,31 +1,46 @@
 <header class="header">
-  <div class="row">
-    <!-- LOGO -->
-    <div class="col-sm-10">
-      <div class="header-logo">
-        <a class="logo" routerLink="/">
-          <img src="../../../assets/img/logo.png" alt="" class="ml-3" />
-        </a>
-      </div>
-    </div>
-    <!-- /LOGO -->
-    <!-- CART -->
-    <div class="col-sm-2">
-      <div class="cart-dropdown">
-        <i class="fa fa-shopping-cart fa-2x"></i>
-        <a routerLink="/cart"> Your Cart </a>
-        <div class="qty">
-          {{ cartData.data[0].quantityInCart !== 0 ? cartData.data.length : 0 }}
+  <div class="container">
+    <div class="row">
+      <!-- LOGO -->
+      <div class="col-sm-10">
+        <div class="header-logo">
+          <a class="logo" routerLink="/">
+            <img src="../../../assets/img/logo.png" alt="" class="ml-3" />
+          </a>
         </div>
       </div>
+      <!-- /LOGO -->
+      <!-- CART -->
+      <div class="col-sm-2">
+        <div class="cart-dropdown">
+          <i class="fa fa-shopping-cart fa-2x"></i>
+          <a routerLink="/cart"> Your Cart </a>
+          <div class="qty">
+            {{
+              cartData.data[0].quantityInCart !== 0 ? cartData.data.length : 0
+            }}
+          </div>
+        </div>
+      </div>
+      <!-- /CART -->
     </div>
-    <!-- /CART -->
   </div>
 </header>
-<form class="form-inline">
-  <mat-form-field class="example-full-width ml-5">
+<div class="form-inline">
+  <mat-form-field class="example-full-width">
     <mat-label>Producto</mat-label>
-    <input matInput value="" />
+    <input
+      matInput
+      value=""
+      #txtSearch
+      (keyup)="SearchProduct(txtSearch.value)"
+    />
   </mat-form-field>
-  <button mat-stroked-button color="primary">Buscar</button>
-</form>
+  <button
+    mat-stroked-button
+    color="primary"
+    (click)="SearchProduct(txtSearch.value)"
+  >
+    Buscar
+  </button>
+</div>

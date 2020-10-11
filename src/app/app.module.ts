@@ -3,8 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { ToastrModule } from 'ngx-toastr'; 
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
+
 //Components
 import { MaterialModule } from './material.module';
 import { AppComponent } from './app.component';
@@ -18,6 +20,7 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     MaterialModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
     PagesModule,
     SharedModule
   ],

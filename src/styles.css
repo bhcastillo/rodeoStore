@@ -31,7 +31,11 @@ a:hover {
   margin-right: 15px;
   margin-bottom: 0px;
 }
-
+/* page cart */
+.img-cart {
+  cursor: pointer;
+  max-width: 350px;
+}
 /*-- Number input --*/
 
 .input-number {
