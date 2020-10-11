@@ -14,9 +14,9 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  SearchProduct(textSearch:string){
+  SearchProductForName(textSearch:string){
     textSearch = textSearch.trim()
     if (textSearch.length ===0)return;   
-    this.productsService.filterProductForName(this.productsData, textSearch);
+    this.productsService.filterProducts(this.productsData.products,'name', textSearch);
   }
 }

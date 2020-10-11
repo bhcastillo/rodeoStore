@@ -5,13 +5,13 @@
       matInput
       value=""
       #txtSearch
-      (keyup)="SearchProduct(txtSearch.value)"
+      (keyup)="SearchProductForName(txtSearch.value)"
     />
   </mat-form-field>
   <button
     mat-stroked-button
     color="primary"
-    (click)="SearchProduct(txtSearch.value)"
+    (click)="SearchProductForName(txtSearch.value)"
   >
     Buscar
   </button>

@@ -7,15 +7,14 @@ import { ProductsService } from 'src/app/services/products.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-  public products:IProduct[]= [];
-  constructor(public productsService: ProductsService) { }
-
-  ngOnInit() {
-    this.productsService.getProducts().subscribe(
-      (products)=> this.products = products,
-      (err)=> console.log(err)
-      )
+export class HomeComponent  {
+  public products:IProduct[];
+  constructor(public productsService: ProductsService) {
+    this.getProducts()
   }
-
+  getProducts(){
+    this.productsService.getProducts().subscribe(
+      (dataProducts)=>this.products =dataProducts),
+      (err)=>console.log(err)
+  }
 }

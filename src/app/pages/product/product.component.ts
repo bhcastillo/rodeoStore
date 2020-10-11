@@ -17,16 +17,30 @@ export class ProductComponent implements OnInit {
     private router: Router,
     private productsService: ProductsService,
     private cartService:CartService
-  ) {}
-
-  ngOnInit(): void {
-    const { id } = this.activateRoute.snapshot.params;
-    this.productsService.getProduct(id).subscribe(
-      (product) => (this.product = product),
-      (err) =>
-      this.router.navigateByUrl('/')
-    );
+  ) {
   }
+  
+  ngOnInit(): void {
+    let { id } = this.activateRoute.snapshot.params;
+    this.getProduct(Number(id) )
+  }
+
+   getProduct(id:number){
+    //if 'id' exists function _getAllData () will seek product for id
+    this.productsService._getAllData(id);
+    // get product of productService
+    this.productsService._getProduct().subscribe(
+      (dataProducts)=>{
+        if (dataProducts){
+          this.product = dataProducts;
+        }
+      }),
+      (err)=>{
+        console.log(err);
+        this.router.navigateByUrl('/')
+      }
+  }
+
   addToCart(id: Number) {
     this.cartService.AddProductToCart(id, this.quantityInput.nativeElement.value);
   }
