@@ -26,4 +26,8 @@
     </div>
   </div>
 </header>
-<app-search [productsData]="productsData" *ngIf="productsData"></app-search>
+<app-search
+  [productsData]="productsData.products"
+  [categoriesData]="productsData.categories"
+  *ngIf="productsData"
+></app-search>

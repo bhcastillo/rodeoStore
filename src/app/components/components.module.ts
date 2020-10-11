@@ -6,6 +6,7 @@ import { PipesModule } from '../pipes/pipes.module';
 //Components
 import { CardComponent } from './card/card.component';
 import { SearchComponent } from './search/search.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [    
@@ -13,6 +14,7 @@ import { SearchComponent } from './search/search.component';
 ],
   imports: [
     CommonModule,
+    FormsModule,
     MaterialModule,
     PipesModule
   ],

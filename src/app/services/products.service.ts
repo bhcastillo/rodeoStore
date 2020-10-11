@@ -7,7 +7,8 @@ import { map } from 'rxjs/operators';
 //Interfaces
 import { IProduct } from '../interfaces/product';
 import { IProductAndCategory } from '../interfaces/productAndCategory';
-import { isNullOrUndefined } from 'util';
+import { ICategory } from '../interfaces/category';
+
 
 @Injectable({
   providedIn: 'root',
@@ -40,8 +41,10 @@ export class ProductsService {
   }
 
   _getAllData(idProduct?: number) {
+
     return this.http.get<IProductAndCategory>(`${this.URI}/getAll`).subscribe(
       (data) => {
+        console.log('Peticion Api');
         this.allData$.next(data);
         this.setProductData();
         if (idProduct) {
@@ -49,7 +52,7 @@ export class ProductsService {
         } 
       },
       (err) => console.log(err)
-    );
+      );
   }
   setProductData() {
     this.productsData$.next(this.allData$.getValue().products);
@@ -70,5 +73,18 @@ export class ProductsService {
       this.productData$.next(productsData[0]);
       this.productsData$.next(ProductsData);
     }
+  }
+  filterForCategory(idCategory:number){
+    this.setProductData()
+    const  productsData = this.productsData$.getValue()
+    const filterProductsData = productsData.filter((product:IProduct)=>{
+        for( const key of Object.keys(product.categories)){
+          if (product.categories[key] === idCategory){
+            return true;
+          }
+        }
+        return false;
+    });
+    this.productsData$.next(filterProductsData);
   }
 }

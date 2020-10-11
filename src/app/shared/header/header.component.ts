@@ -25,7 +25,9 @@ export class HeaderComponent implements OnInit {
       (data) => this.cartData = data,
       (err) => console.log(err));
     this.productsService.getAllData().subscribe(
-      (data) => this.productsData = data,
+      (data) => {
+        this.productsData = data
+      },
       (err) => console.log(err)
     )
   }

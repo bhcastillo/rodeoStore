@@ -1,18 +1,44 @@
-<div class="form-inline">
-  <mat-form-field class="example-full-width">
-    <mat-label>Producto</mat-label>
-    <input
-      matInput
-      value=""
-      #txtSearch
-      (keyup)="SearchProductForName(txtSearch.value)"
-    />
-  </mat-form-field>
-  <button
-    mat-stroked-button
-    color="primary"
-    (click)="SearchProductForName(txtSearch.value)"
-  >
-    Buscar
-  </button>
-</div>
+<section>
+  <div class="row">
+    <!-- Input Search -->
+    <div class="col-sm-4">
+      <div class="form-inline">
+        <mat-form-field class="example-full-width">
+          <mat-label>Producto</mat-label>
+          <input
+            matInput
+            value=""
+            #txtSearch
+            (keyup)="SearchProductForName(txtSearch.value)"
+          />
+        </mat-form-field>
+        <button
+          class="ml-2"
+          mat-stroked-button
+          color="primary"
+          (click)="SearchProductForName(txtSearch.value)"
+        >
+          Buscar
+        </button>
+      </div>
+    </div>
+    <!-- categories -->
+    <div class="col-sm-4">
+      <mat-form-field appearance="fill">
+        <mat-label>Categorias</mat-label>
+        <mat-select
+          [(ngModel)]="selectCategory"
+          (selectionChange)="filterForCategory($event.value)"
+          name="category"
+        >
+          <mat-option
+            *ngFor="let category of categoriesData"
+            [value]="category.id"
+          >
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</section>
