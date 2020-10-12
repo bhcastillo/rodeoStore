@@ -27,7 +27,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Categorias</mat-label>
         <mat-select
-          [(ngModel)]="this.productsService.selectedCategory"
+          [(ngModel)]="this.filtersService.selectedCategory"
           (selectionChange)="filterFor('categories', $event.value)"
           name="category"
         >
@@ -48,7 +48,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Cantidad</mat-label>
         <mat-select
-          [(ngModel)]="this.productsService.selectedQuantity"
+          [(ngModel)]="this.filtersService.selectedQuantity"
           (selectionChange)="filterFor('quantities', $event.value)"
           name="qauntity"
         >
@@ -69,7 +69,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Tipos</mat-label>
         <mat-select
-          [(ngModel)]="this.productsService.selectedType"
+          [(ngModel)]="this.filtersService.selectedType"
           (selectionChange)="filterFor('types', $event.value)"
           name="type"
         >
@@ -87,7 +87,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Ordenar</mat-label>
         <mat-select
-          [(ngModel)]="this.productsService.selectedOrder"
+          [(ngModel)]="this.filtersService.selectedOrder"
           (selectionChange)="filterFor('order', $event.value)"
           name="order"
         >
