@@ -15,7 +15,19 @@ a:hover {
   color: #fff;
 }
 /* pages product */
-
+.Products {
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: 1fr 3fr;
+  grid-gap: 0.5em;
+}
+.Products aside {
+  height: 100%;
+  max-width: 232px;
+  min-width: 232px;
+  padding-left: 1em;
+  background: rgba(0, 0, 0, 0.1);
+}
 .product-name {
   text-transform: uppercase;
   font-size: 18px;
@@ -94,16 +106,17 @@ a:hover {
 .logo:hover {
   cursor: pointer;
 }
-/* Search */
-.form-inline {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
-  -ms-flex-align: center;
-  align-items: center;
-  justify-content: center;
+/* Search h2 */
+.search {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
+.mat-form-field-infix {
+  padding: 0.5em 0;
+  border-top: 0 !important;
+}
+/* cart */
+
 .cart-dropdown {
   position: relative;
   display: inline-block;

@@ -13,6 +13,7 @@ import { CartComponent } from './cart/cart.component';
 import { MaterialModule } from '../material.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -24,7 +25,7 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-    
+    SharedModule,    
     ComponentsModule,
     MaterialModule
   ],

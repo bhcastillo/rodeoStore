@@ -7,6 +7,8 @@ import { MaterialModule } from '../material.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
+import { AsideComponent } from './aside/aside.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -14,6 +16,7 @@ import { ComponentsModule } from '../components/components.module';
   declarations: [
     HeaderComponent,
     FooterComponent,
+    AsideComponent,
 
   ],
   imports: [
@@ -22,10 +25,12 @@ import { ComponentsModule } from '../components/components.module';
     AppRoutingModule,
     ComponentsModule,
     RouterModule,
+    FormsModule
   ],
   exports:[ 
     HeaderComponent,
     FooterComponent,
+    AsideComponent
   ]
 })
 export class SharedModule { }

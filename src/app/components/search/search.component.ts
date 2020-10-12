@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FiltersService } from 'src/app/services/filters.service';
 //Services
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -10,11 +9,9 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class SearchComponent implements OnInit {
   @Input()productsData;
-  @Input()categoriesData;
-  itemsType = [{ id:1,name:'Más Vendido'},{ id:2,name:'Disponibles'},{ id:3,name:'Agotados'}];
-  itemsQuantity = [{id:1, name:'Más de $30.000'},{id:2, name:'Menos de $10.000'}];
-  itemsOrder = [{id:1, name:'Nombre'},{id:2, name:'Mayor precio'},{id:3, name:'Menor precio'}];
-  constructor(public productsService:ProductsService,public filtersService:FiltersService) { }
+  
+  
+  constructor(public productsService:ProductsService) { }
   
   ngOnInit(): void {
   }
@@ -24,21 +21,6 @@ export class SearchComponent implements OnInit {
     //filter for product name   
     this.productsService.filterProducts(this.productsData,'name', textSearch);
   }
-  filterFor(groupSelectOption,id:number){
-    this.filtersService.filterFor(groupSelectOption,id);
-  }
- 
-  clearSelectedCategory(){
-    this.filtersService.clearSelectedCategory();
-  }
-  clearSelectedType(){
-    this.filtersService.clearSelectedType();
-  }
-  clearSelectedQuantity(){
-    this.filtersService.clearSelectedQuantity();
-  }
-  clearSelectedOrder(){
-    this.filtersService.clearSelectedOrder();
-  }
+  
 
 }

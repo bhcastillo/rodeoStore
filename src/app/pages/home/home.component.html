@@ -1,6 +1,12 @@
-<section class="section">
-  <div class="container">
-    <h1>NUEVOS PRODUCTOS</h1>
-    <app-card *ngIf="products" [products]="products"> </app-card>
-  </div>
-</section>
+<div class="Products">
+  <app-aside
+    [categoriesData]="productsData.categories"
+    *ngIf="productsData"
+  ></app-aside>
+  <section>
+    <div class="container">
+      <h1>NUEVOS PRODUCTOS</h1>
+      <app-card *ngIf="products" [products]="products"> </app-card>
+    </div>
+  </section>
+</div>

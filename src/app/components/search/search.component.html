@@ -1,104 +1,21 @@
-<section class="container">
-  <div class="row">
-    <!-- Filter Input Search -->
-    <div class="col-12">
-      <div class="form-inline mr-2">
-        <mat-form-field class="example-full-width">
-          <mat-label>Producto</mat-label>
-          <input
-            matInput
-            value=""
-            #txtSearch
-            (keyup)="SearchProductForName(txtSearch.value)"
-          />
-        </mat-form-field>
-        <button
+<!-- Filter Input Search -->
+<div>
+  <h2>Buscar</h2>
+  <mat-form-field class="example-full-width">
+    <mat-label>Producto</mat-label>
+    <input
+      matInput
+      value=""
+      #txtSearch
+      (keyup)="SearchProductForName(txtSearch.value)"
+    />
+  </mat-form-field>
+  <!-- <button
           class="ml-2"
           mat-stroked-button
           color="primary"
           (click)="SearchProductForName(txtSearch.value)"
         >
           Buscar
-        </button>
-      </div>
-    </div>
-    <!-- Filter categories -->
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Categorias</mat-label>
-        <mat-select
-          [(ngModel)]="this.filtersService.selectedCategory"
-          (selectionChange)="filterFor('categories', $event.value)"
-          name="category"
-        >
-          <mat-option [value]="" (click)="clearSelectedCategory()">
-            <b>No filtrar</b>
-          </mat-option>
-          <mat-option
-            *ngFor="let category of categoriesData"
-            [value]="category.id"
-          >
-            {{ category.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <!-- Filter Quantity -->
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Cantidad</mat-label>
-        <mat-select
-          [(ngModel)]="this.filtersService.selectedQuantity"
-          (selectionChange)="filterFor('quantities', $event.value)"
-          name="qauntity"
-        >
-          <mat-option [value]="" (click)="clearSelectedQuantity()">
-            <b>No filtrar</b>
-          </mat-option>
-          <mat-option
-            *ngFor="let quantity of itemsQuantity"
-            [value]="quantity.id"
-          >
-            {{ quantity.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <!-- Filter Type -->
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Tipos</mat-label>
-        <mat-select
-          [(ngModel)]="this.filtersService.selectedType"
-          (selectionChange)="filterFor('types', $event.value)"
-          name="type"
-        >
-          <mat-option [value]="" (click)="clearSelectedType()">
-            <b>No filtrar</b>
-          </mat-option>
-          <mat-option *ngFor="let type of itemsType" [value]="type.id">
-            {{ type.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <!-- Filter Order -->
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Ordenar</mat-label>
-        <mat-select
-          [(ngModel)]="this.filtersService.selectedOrder"
-          (selectionChange)="filterFor('order', $event.value)"
-          name="order"
-        >
-          <mat-option [value]="" (click)="clearSelectedOrder()">
-            <b>No filtrar</b>
-          </mat-option>
-          <mat-option *ngFor="let order of itemsOrder" [value]="order.id">
-            {{ order.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div>
-</section>
+        </button> -->
+</div>
