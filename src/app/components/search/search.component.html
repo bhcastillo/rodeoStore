@@ -1,8 +1,8 @@
-<section>
+<section class="container">
   <div class="row">
-    <!-- Input Search -->
-    <div class="col-sm-4">
-      <div class="form-inline">
+    <!-- Filter Input Search -->
+    <div>
+      <div class="form-inline mr-2">
         <mat-form-field class="example-full-width">
           <mat-label>Producto</mat-label>
           <input
@@ -22,8 +22,8 @@
         </button>
       </div>
     </div>
-    <!-- categories -->
-    <div class="col-sm-4">
+    <!-- Filter categories -->
+    <div>
       <mat-form-field appearance="fill">
         <mat-label>Categorias</mat-label>
         <mat-select
@@ -43,12 +43,33 @@
         </mat-select>
       </mat-form-field>
     </div>
+    <!-- Filter Quantity -->
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Cantidad</mat-label>
+        <mat-select
+          [(ngModel)]="this.productsService.selectedQuantity"
+          (selectionChange)="filterFor('quantity', $event.value)"
+          name="qauntity"
+        >
+          <mat-option [value]="" (click)="clearSelectedQuantity()">
+            <b>Todas las cantidades</b>
+          </mat-option>
+          <mat-option
+            *ngFor="let quantity of itemsQuantity"
+            [value]="quantity.id"
+          >
+            {{ quantity.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
     <!-- Type -->
-    <div class="col-sm-4">
+    <div>
       <mat-form-field appearance="fill">
         <mat-label>Tipos</mat-label>
         <mat-select
-          [(ngModel)]="this.productsService.selectType"
+          [(ngModel)]="this.productsService.selectedType"
           (selectionChange)="filterFor('types', $event.value)"
           name="type"
         >
