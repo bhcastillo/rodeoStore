@@ -24,7 +24,8 @@ export class ProductsService {
   selectedType:string;
   //variable for filter quantity product
   selectedQuantity:string;
-
+  //variable for filter order product
+  selectedOrder:string;
   constructor(private http: HttpClient) {
     this._getAllData();
   }
@@ -82,21 +83,27 @@ export class ProductsService {
   }
   filterFor(groupSelectOption:string, idSelectedOption:number){
     this.setProductData();
+    let filterProductsData;
     const  productsData = this.productsData$.getValue();
-    const filterProductsData = productsData.filter((product:IProduct)=>{
-        //filter products by category
-      if (groupSelectOption ==='categories'){
-        return this.filterForCategory(product,idSelectedOption)
-      }
-    //filter products by types
-      else if (groupSelectOption === 'types') {
-        return this.filterForType(product, idSelectedOption);
-      }
-      //filter products by quantity
-      else{
-        return this.filterForQuantity(product, idSelectedOption);
+    //filter products by order
+    if (groupSelectOption ==='order' ){
+      filterProductsData = this.filterForOrder(productsData, idSelectedOption)
+    }else {
+      // filter products by category, quantity and types
+      filterProductsData = productsData.filter((product:IProduct)=>{
+      switch (groupSelectOption) {
+          //filter products by category
+          case 'categories':
+            return this.filterForCategory(product,idSelectedOption);
+          //filter products by quantity
+          case 'quantities':
+            return this.filterForQuantity(product, idSelectedOption);
+          //filter products by types
+          case 'types':
+            return this.filterForType(product, idSelectedOption);
       }
     });
+    }
     this.productsData$.next(filterProductsData);
   }
   private filterForCategory(product:IProduct, idSelectedOption:number){
@@ -107,7 +114,6 @@ export class ProductsService {
         }
         return false;
   }
-    
   private filterForType(product:IProduct, idSelectedOption:number){
      switch (idSelectedOption) {
           //filter products by bestseller
@@ -123,15 +129,15 @@ export class ProductsService {
             if (product.quantity<1)return true;
           default:
             return false;
-            break;
-      }
+    }
   }
-  
   private filterForQuantity(product:IProduct, idSelectedOption:number){
     switch (idSelectedOption) {
+      //filter products by greater than $30.000
       case 1:
         if (product.price >30000)return true;
         break;
+        //filter products by less  than $10.000
       case 2:
         if (product.price <10000)return true;
         break;
@@ -139,7 +145,37 @@ export class ProductsService {
         return false;
     }
   }
-
+  private filterForOrder(productsData, idSelectedOption:number){
+    switch (idSelectedOption) {
+      //filter products by sort
+      case 1:
+        return productsData.sort(function(a,b){
+          if (a.name > b.name) return 1;
+          if (a.name < b.name) return -1;
+          return 0;
+        });
+      //filter products from largest to smallest
+      case 2:
+        return productsData.sort(function(b,a){
+          if (a.price > b.price) return 1;
+          if (a.price < b.price) return -1;
+          return 0;
+        })
+      //filter products from smaillest to largest 
+      case 3:
+        return productsData.sort(function(a,b){
+          if (a.price > b.price) return 1;
+          if (a.price < b.price) return -1;
+          return 0;
+        })
+      default:
+        productsData.sort(function(a,b){
+          if (a.id > b.id) return 1;
+          if (a.id < b.id) return -1;
+          return 0;
+        })
+    }
+  }
   clearSelectedCategory(){
     this.selectedCategory = null;
     this.setProductData();
@@ -150,6 +186,10 @@ export class ProductsService {
   }
   clearSelectedQuantity(){
     this.selectedQuantity = null;
+    this.setProductData();
+  }
+  clearSelectedOrder(){
+    this.selectedOrder = null;
     this.setProductData();
   }
 }

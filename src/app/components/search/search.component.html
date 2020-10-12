@@ -1,7 +1,7 @@
 <section class="container">
   <div class="row">
     <!-- Filter Input Search -->
-    <div>
+    <div class="col-12">
       <div class="form-inline mr-2">
         <mat-form-field class="example-full-width">
           <mat-label>Producto</mat-label>
@@ -32,7 +32,7 @@
           name="category"
         >
           <mat-option [value]="" (click)="clearSelectedCategory()">
-            <b>Todas las Categorias</b>
+            <b>No filtrar</b>
           </mat-option>
           <mat-option
             *ngFor="let category of categoriesData"
@@ -49,11 +49,11 @@
         <mat-label>Cantidad</mat-label>
         <mat-select
           [(ngModel)]="this.productsService.selectedQuantity"
-          (selectionChange)="filterFor('quantity', $event.value)"
+          (selectionChange)="filterFor('quantities', $event.value)"
           name="qauntity"
         >
           <mat-option [value]="" (click)="clearSelectedQuantity()">
-            <b>Todas las cantidades</b>
+            <b>No filtrar</b>
           </mat-option>
           <mat-option
             *ngFor="let quantity of itemsQuantity"
@@ -64,7 +64,7 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <!-- Type -->
+    <!-- Filter Type -->
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Tipos</mat-label>
@@ -74,10 +74,28 @@
           name="type"
         >
           <mat-option [value]="" (click)="clearSelectedType()">
-            <b>Todos los Tipos</b>
+            <b>No filtrar</b>
           </mat-option>
           <mat-option *ngFor="let type of itemsType" [value]="type.id">
             {{ type.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- Filter Order -->
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Ordenar</mat-label>
+        <mat-select
+          [(ngModel)]="this.productsService.selectedOrder"
+          (selectionChange)="filterFor('order', $event.value)"
+          name="order"
+        >
+          <mat-option [value]="" (click)="clearSelectedOrder()">
+            <b>No filtrar</b>
+          </mat-option>
+          <mat-option *ngFor="let order of itemsOrder" [value]="order.id">
+            {{ order.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>

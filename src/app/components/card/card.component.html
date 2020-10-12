@@ -9,7 +9,7 @@
         [src]="product.img"
         (click)="selectProduct(product.id)"
       />
-      <mat-card-title> {{ product.name }} </mat-card-title>
+      <mat-card-title> {{ product.name | uppercase }} </mat-card-title>
       <mat-card-content>
         {{ product.description | description }}
       </mat-card-content>

@@ -11,7 +11,8 @@ export class SearchComponent implements OnInit {
   @Input()productsData;
   @Input()categoriesData;
   itemsType = [{ id:1,name:'Más Vendido'},{ id:2,name:'Disponibles'},{ id:3,name:'Agotados'}];
-  itemsQuantity = [{id:1, name:'Más de $30.000'},{id:2, name:'Menos de $10.000'}]
+  itemsQuantity = [{id:1, name:'Más de $30.000'},{id:2, name:'Menos de $10.000'}];
+  itemsOrder = [{id:1, name:'Nombre'},{id:2, name:'Mayor precio'},{id:3, name:'Menor precio'}];
   constructor(public productsService:ProductsService) { }
   
   ngOnInit(): void {
@@ -34,6 +35,9 @@ export class SearchComponent implements OnInit {
   }
   clearSelectedQuantity(){
     this.productsService.clearSelectedQuantity();
+  }
+  clearSelectedOrder(){
+    this.productsService.clearSelectedOrder();
   }
 
 }
