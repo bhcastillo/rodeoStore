@@ -29,6 +29,10 @@ export class AsideComponent implements OnInit {
     )
   }
   filterFor(groupSelectOption,id:number){
+    let inputSearch:any  = document.getElementById('txtSearch');
+    //clear value input Search products
+    inputSearch.value = '';
+    //filter products
     this.filtersService.filterFor(groupSelectOption,id);
   }
  

@@ -20,6 +20,7 @@
           mat-stroked-button
           [color]="product.quantity < 1 ? 'warn' : 'primary'"
           (click)="AddProduct(product.id)"
+          [disabled]="product.quantity < 1"
         >
           {{ product.quantity < 1 ? "Agotado" : "Comprar" }}
         </button>

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FiltersService } from 'src/app/services/filters.service';
 //Services
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -11,7 +12,7 @@ export class SearchComponent implements OnInit {
   @Input()productsData;
   
   
-  constructor(public productsService:ProductsService) { }
+  constructor(public productsService:ProductsService,public filtersService:FiltersService) { }
   
   ngOnInit(): void {
   }
@@ -19,6 +20,10 @@ export class SearchComponent implements OnInit {
     textSearch = textSearch.trim()
     if (textSearch.length ===0)return;
     //filter for product name   
+    this.filtersService.selectedCategory =null;
+    this.filtersService.selectedQuantity =null;
+    this.filtersService.selectedType =null;
+    this.filtersService.clearSelectedOrder =null;
     this.productsService.filterProducts(this.productsData,'name', textSearch);
   }
   

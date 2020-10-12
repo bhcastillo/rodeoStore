@@ -5,17 +5,10 @@
     <mat-label>Producto</mat-label>
     <input
       matInput
-      value=""
+      [value]=""
       #txtSearch
+      id="txtSearch"
       (keyup)="SearchProductForName(txtSearch.value)"
     />
   </mat-form-field>
-  <!-- <button
-          class="ml-2"
-          mat-stroked-button
-          color="primary"
-          (click)="SearchProductForName(txtSearch.value)"
-        >
-          Buscar
-        </button> -->
 </div>
