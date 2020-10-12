@@ -11,9 +11,9 @@ import { IProduct } from 'src/app/interfaces/product';
 export class SearchComponent implements OnInit {
   @Input()productsData;
   @Input()categoriesData;
-  selectCategory:string;
-  constructor(private productsService:ProductsService) { }
-
+  itemsType= [{ id:1,name:'Más Vendido'},{ id:2,name:'Disponibles'},{ id:3,name:'Agotados'}]
+  constructor(public productsService:ProductsService) { }
+  
   ngOnInit(): void {
   }
   SearchProductForName(textSearch:string){
@@ -22,7 +22,15 @@ export class SearchComponent implements OnInit {
     //filter for product name   
     this.productsService.filterProducts(this.productsData,'name', textSearch);
   }
-  filterForCategory(idCategory){
-    this.productsService.filterForCategory(idCategory)
+  filterFor(groupSelectOption,id:number){
+    this.productsService.filterFor(groupSelectOption,id);
   }
+ 
+  clearSelectedCategory(){
+    this.productsService.clearSelectedCategory();
+  }
+  clearSelectedType(){
+    this.productsService.clearSelectedType();
+  }
+
 }

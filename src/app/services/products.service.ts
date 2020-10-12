@@ -18,6 +18,10 @@ export class ProductsService {
   private allData$: BehaviorSubject<IProductAndCategory> = new BehaviorSubject<IProductAndCategory>(null);
   private productsData$: BehaviorSubject<IProduct[]> = new BehaviorSubject<IProduct[]>(null);
   private productData$: BehaviorSubject<IProduct> = new BehaviorSubject<IProduct>(null);
+  //variable for filter category
+  selectedCategory:string;
+  //variable for filter type product
+  selectType:string;
 
   constructor(private http: HttpClient) {
     this._getAllData();
@@ -74,17 +78,48 @@ export class ProductsService {
       this.productsData$.next(ProductsData);
     }
   }
-  filterForCategory(idCategory:number){
-    this.setProductData()
-    const  productsData = this.productsData$.getValue()
+  filterFor(groupSelectOption:string, idSelectedOption:number){
+    this.setProductData();
+    const  productsData = this.productsData$.getValue();
     const filterProductsData = productsData.filter((product:IProduct)=>{
+        //filter products by category
+      if (groupSelectOption ==='categories'){
         for( const key of Object.keys(product.categories)){
-          if (product.categories[key] === idCategory){
+          if (product.categories[key] === idSelectedOption){
             return true;
           }
         }
         return false;
+      }
+    //filter products by types
+    else {
+      switch (idSelectedOption) {
+        //filter products by bestseller
+        case 1:
+          if (product.bestSeller) return true;
+          break;
+        //filter porducts by available
+        case 2:
+          if (product.quantity>0)return true;
+          break;
+        //filter products by Exhausted 
+        case 3:
+          if (product.quantity<1)return true;
+        default:
+          return false;
+          break;
+      }
+    }
     });
     this.productsData$.next(filterProductsData);
+  }
+ 
+  clearSelectedCategory(){
+    this.selectedCategory = null;
+    this.setProductData();
+  }
+  clearSelectedType(){
+    this.selectType = null;
+    this.setProductData();
   }
 }
