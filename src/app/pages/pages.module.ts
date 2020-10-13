@@ -14,11 +14,15 @@ import { MaterialModule } from '../material.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { CheckoutComponent } from './checkout/checkout.component';
+
+
 @NgModule({
   declarations: [
     HomeComponent,
     ProductComponent,
     CartComponent,
+    CheckoutComponent,
   ],
   imports: [
     CommonModule,
@@ -27,7 +31,7 @@ import { SharedModule } from '../shared/shared.module';
     RouterModule,
     SharedModule,    
     ComponentsModule,
-    MaterialModule
+    MaterialModule,
   ],
   exports:[
     HomeComponent,

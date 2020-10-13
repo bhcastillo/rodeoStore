@@ -77,8 +77,10 @@
           <td style="border: none"></td>
           <td></td>
           <td></td>
-          <td>TOTAL</td>
-          <td>{{ cartTotal | currency: "COP":"symbol":"4.0-2" }}</td>
+          <td class="item-total">TOTAL</td>
+          <td class="item-total">
+            {{ cartTotal | currency: "COP":"symbol":"4.0-2" }}
+          </td>
         </tr>
       </tbody>
     </table>

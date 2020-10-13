@@ -1,0 +1,92 @@
+<section class="checkout mt-2">
+  <div class="d-flex w-100 justify-content-between flex-column flex-md-row">
+    <div class="col-sm-6">
+      <h2>Dirección de Envio</h2>
+      <!-- form billing address -->
+      <div class="billing-address">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Apellido</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Correo</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Pais</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Ciudad</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Código Postal</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Celular</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <br />
+      </div>
+    </div>
+    <div class="col-sm-6 pt-2">
+      <div class="your-Order">
+        <h1>Tú Orden</h1>
+        <div class="row" *ngIf="cartData[0].quantityInCart !== 0">
+          <div class="col-md-6 col-lg-7">
+            <h2>Product</h2>
+            <ul>
+              <li class="list-products" *ngFor="let product of cartData">
+                {{ product.quantityInCart }}x {{ product.product.name }}
+              </li>
+              <li class="item-total">Total</li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-5">
+            <h2>Subtotal</h2>
+            <ul>
+              <li
+                class="list-products"
+                *ngFor="let product of cartData; let i = index"
+              >
+                {{
+                  cartService.CalculateSubTotal(i)
+                    | currency: "COP":"symbol":"4.0-2"
+                }}
+              </li>
+              <li class="item-total">
+                {{ cartTotal | currency: "COP":"symbol":"4.0-2" }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-2">
+          <mat-radio-group
+            aria-label="Select an option"
+            class="d-flex flex-column"
+          >
+            <mat-radio-button value="1" color="primary" checked
+              >Transferencia bancaria directa</mat-radio-button
+            >
+            <mat-radio-button value="2" color="primary"
+              >Sistema Paypal</mat-radio-button
+            >
+          </mat-radio-group>
+        </div>
+        <button mat-raised-button color="primary">Confirmar Compra</button>
+      </div>
+    </div>
+  </div>
+</section>

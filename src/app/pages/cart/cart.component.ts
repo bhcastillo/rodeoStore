@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { IcartDataServer } from 'src/app/interfaces/cartData';
+import { Component } from '@angular/core';
+//Services
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -8,24 +8,18 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./cart.component.css']
 })
 
-export class CartComponent implements OnInit {
+export class CartComponent  {
 
   cartData:any=[];
   cartTotal:number;
   subtotal:number
-  constructor(public cartService:CartService) { 
-
-      this.cartService.cartDataObs$.subscribe(data=>{
-        this.cartData =data.data;
-      })
-           this.cartService.cartTotal$.subscribe(total => this.cartTotal = total);
-
-
+  constructor(public cartService:CartService) {
+    this.cartService.cartDataObs$.subscribe(data=>{
+      this.cartData =data.data;
+    });
+    this.cartService.cartTotal$.subscribe(total => this.cartTotal = total);
   }
 
-  ngOnInit(): void {
-
-  }
   ChangeQuantity(id: Number, increaseQuantity: Boolean) {
     this.cartService.UpdateCartData(id, increaseQuantity);
   }

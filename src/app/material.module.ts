@@ -5,6 +5,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatRadioModule } from '@angular/material/radio';
+
 
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -17,7 +20,9 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatCardModule,
     MatInputModule,
     MatTableModule,
-    MatSelectModule    
+    MatSelectModule,
+    MatDividerModule,
+    MatRadioModule
   ],
   exports:[
     BrowserAnimationsModule,
@@ -25,7 +30,8 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatButtonModule,
     MatInputModule,
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRadioModule
   ]
 })
 export class MaterialModule { }

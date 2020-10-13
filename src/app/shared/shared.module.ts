@@ -1,23 +1,21 @@
 import { NgModule } from '@angular/core';
+//Modules
 import { CommonModule } from '@angular/common';
-//Components
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
 import { MaterialModule } from '../material.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
-import { AsideComponent } from './aside/aside.component';
 import { FormsModule } from '@angular/forms';
+//Components
+import { HeaderComponent } from './header/header.component';
+import { AsideComponent } from './aside/aside.component';
 
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    FooterComponent,
     AsideComponent,
-
   ],
   imports: [
     CommonModule,
@@ -29,7 +27,6 @@ import { FormsModule } from '@angular/forms';
   ],
   exports:[ 
     HeaderComponent,
-    FooterComponent,
     AsideComponent
   ]
 })

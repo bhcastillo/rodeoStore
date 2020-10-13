@@ -14,6 +14,13 @@ a:hover {
   text-decoration: none;
   color: #fff;
 }
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 /* pages product */
 .Products {
   display: grid;
@@ -123,7 +130,7 @@ a:hover {
 }
 
 .cart-dropdown a {
-  display: block;
+  display: inline-grid;
 }
 .cart-dropdown .qty {
   position: absolute;
@@ -150,4 +157,35 @@ table {
 .btn-delete {
   color: #d10024;
   margin-right: 3px;
+}
+/* checkout page */
+.checkout {
+  width: 80%;
+  margin: auto;
+}
+.your-Order {
+  padding: 0.5em;
+  border: 1px solid #c2c2c2;
+  border-radius: 10px;
+}
+.list-products {
+  font-size: 1.2em;
+}
+.item-total {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+@media (max-width: 765px) {
+  .checkout {
+    width: 90%;
+  }
+}
+
+.billing-address .mat-form-field-infix {
+  display: block;
+  position: relative;
+  flex: auto;
+  min-width: 0;
+  width: 265px;
 }

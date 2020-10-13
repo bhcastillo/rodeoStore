@@ -13,8 +13,10 @@
       <!-- CART -->
       <div class="col-sm-2">
         <div class="cart-dropdown">
-          <i class="fa fa-shopping-cart fa-2x"></i>
-          <a routerLink="/cart"> Your Cart </a>
+          <a routerLink="/cart">
+            <i class="fa fa-shopping-cart fa-2x"></i>
+            Your Cart
+          </a>
           <div class="qty">
             {{
               cartData.data[0].quantityInCart !== 0 ? cartData.data.length : 0
